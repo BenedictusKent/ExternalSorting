@@ -6,6 +6,9 @@ def split_file(inputfile, file_size):
     name = 0                                                            # file namer
     temp_data = []                                                      # hold data temporarily
 
+    if(os.path.isdir('text_files')):                                    # if directory exist, delete it
+        shutil.rmtree('text_files')
+
     os.mkdir('text_files/')                                             # make directory for the sake of tidiness
     
     # split files
@@ -23,6 +26,7 @@ def split_file(inputfile, file_size):
             shutil.move('file0' + str(name) + '.txt', 'text_files/')    # move text file to the directory
             count = 0
             name += 1
+
 
 infile = open("test.txt", 'r')
 file_size = os.stat("test.txt").st_size                                 # file size
