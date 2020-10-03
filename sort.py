@@ -77,11 +77,49 @@ def sort_allfiles(file_size):
         hold.clear()
         outfile.close()
 
+def merge(file1, file2, name):
+    text1 = file1.readline()
+    text2 = file2.readline()
+
+    outfile = open('text_files/file1' + str(name) + '.txt', 'w')
+
+    while True:
+        if(text1 != '' and text2 != ''):
+            if(int(text1) <= int(text2)):
+                outfile.write(text1)
+                text1 = file1.readline()
+            elif(int(text1) > int(text2)):
+                outfile.write(text2)
+                text2 = file2.readline()
+        else:
+            outfile.write('\n')
+            while(text1 != ''):
+                outfile.write(text1)
+                text1 = file1.readline()
+            while(text2 != ''):
+                outfile.write(text2)
+                text2 = file2.readline()
+            break
+
+    outfile.close()
 
 infile = open("test.txt", 'r')
 file_size = os.stat("test.txt").st_size                                 # file size
 
 split_file(infile, file_size)
 sort_allfiles(file_size)
+
+# first merge
+name = 0
+for i in range(10):
+    if(i%2 == 0):
+        file1 = open('text_files/file0' + str(i) + '.txt', 'r')
+        file2 = open('text_files/file0' + str(i+1) + '.txt', 'r')
+        merge(file1, file2, name)
+        name += 1
+        file1.close()
+        file2.close()
+        os.remove('text_files/file0' + str(i) + '.txt')
+        os.remove('text_files/file0' + str(i+1) + '.txt')
 
 infile.close()
