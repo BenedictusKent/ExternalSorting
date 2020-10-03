@@ -27,10 +27,61 @@ def split_file(inputfile, file_size):
             count = 0
             name += 1
 
+def sortarray(array):
+    if(len(array) > 1):
+        # divide array to 2
+        mid = int(len(array) / 2)
+        left = array[:mid]
+        right = array[mid:]
+
+        # sort by position
+        sortarray(left)
+        sortarray(right)
+
+        i = j = k = 0
+        while i<len(left) and j<len(right):
+            if(left[i] < right[j]):
+                array[k] = left[i]
+                i += 1
+            else:
+                array[k] = right[j]
+                j += 1
+            k += 1
+
+        while i<len(left):
+            array[k] = left[i]
+            i += 1
+            k += 1
+        
+        while j<len(right):
+            array[k] = right[j]
+            j += 1
+            k += 1
+
+def sort_allfiles(file_size):
+    hold = []
+    for i in range(int(file_size/100)):
+        infile = open('text_files/file0' + str(i) + '.txt', 'r')
+        for j in infile:
+            hold.append(int(j))
+        infile.close()
+
+        os.remove('text_files/file0' + str(i) + '.txt')
+
+        outfile = open('text_files/file0' + str(i) + '.txt', 'w')
+        sortarray(hold)
+        for j in range(len(hold)):
+            outfile.write(str(hold[j]))
+            if(j < len(hold)-1):
+                outfile.write("\n")
+        hold.clear()
+        outfile.close()
+
 
 infile = open("test.txt", 'r')
 file_size = os.stat("test.txt").st_size                                 # file size
 
 split_file(infile, file_size)
+sort_allfiles(file_size)
 
 infile.close()
