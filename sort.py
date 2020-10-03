@@ -81,7 +81,7 @@ def merge(file1, file2, name):
     text1 = file1.readline()
     text2 = file2.readline()
 
-    outfile = open('text_files/file1' + str(name) + '.txt', 'w')
+    outfile = open('text_files/file' + str(name) + '.txt', 'w')
 
     while True:
         if(text1 != '' and text2 != ''):
@@ -110,8 +110,8 @@ split_file(infile, file_size)
 sort_allfiles(file_size)
 
 # first merge
-name = 0
-for i in range(10):
+name = 10
+for i in range(9):
     if(i%2 == 0):
         file1 = open('text_files/file0' + str(i) + '.txt', 'r')
         file2 = open('text_files/file0' + str(i+1) + '.txt', 'r')
@@ -122,4 +122,49 @@ for i in range(10):
         os.remove('text_files/file0' + str(i) + '.txt')
         os.remove('text_files/file0' + str(i+1) + '.txt')
 
+# second merge
+name = 15
+for i in range(4):
+    if(i%2 == 0):
+        if(os.path.isfile('text_files/file1' + str(i) + '.txt') and os.path.isfile('text_files/file1' + str(i+1) + '.txt')):
+            file1 = open('text_files/file1' + str(i) + '.txt', 'r')
+            file2 = open('text_files/file1' + str(i+1) + '.txt', 'r')
+            merge(file1, file2, name)
+            name += 1
+            file1.close()
+            file2.close()
+            os.remove('text_files/file1' + str(i) + '.txt')
+            os.remove('text_files/file1' + str(i+1) + '.txt')
+
+# third merge
+name = 17
+file1 = open('text_files/file14.txt', 'r')
+file2 = open('text_files/file15.txt', 'r')
+merge(file1, file2, name)
+name += 1
+file1.close()
+file2.close()
+os.remove('text_files/file14.txt')
+os.remove('text_files/file15.txt')
+
+# last merge
+name = 18
+file1 = open('text_files/file16.txt', 'r')
+file2 = open('text_files/file17.txt', 'r')
+merge(file1, file2, name)
+name += 1
+file1.close()
+file2.close()
+os.remove('text_files/file16.txt')
+os.remove('text_files/file17.txt')
+
+'''
+testing = open('text_files/file18.txt', 'r')
+count = 0
+for i in testing:
+    if(int(i) == hold[i]):
+        count += 1
+print(count)
+testing.close()
+'''
 infile.close()
