@@ -175,6 +175,9 @@ if(TOTAL_NUM >= 230000000):
     print("time to merge: " + str(end_timer-start_timer) + " seconds / " 
             + str((end_timer-start_timer)/60) + " minutes")
 
+    old_file = os.listdir("text_files/")
+    os.rename("text_files/" + old_file[0], "text_files/output.txt")         # rename file to output.txt
+
 # any files less than 2.3 GB
 else:
     hold = []
