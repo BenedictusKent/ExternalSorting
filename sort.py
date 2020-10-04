@@ -17,7 +17,7 @@ def split_file(inputfile, filesize):
         temp_data.append(int(i))
         count += 1
         if(count == filesize):
-            outfile = open('file' + str(name) + '.txt', 'w')           
+            outfile = open('file' + str(name) + '.txt', 'w', encoding='utf-8')           
             for j in range(len(temp_data)):
                 outfile.write(str(temp_data[j]))
                 if(j < len(temp_data)-1):
@@ -63,14 +63,14 @@ def sortarray(array):
 def sort_allfiles(number_of_files):
     hold = []
     for i in range(number_of_files):
-        infile = open('text_files/file' + str(i) + '.txt', 'r')
+        infile = open('text_files/file' + str(i) + '.txt', 'r', encoding='utf-8')
         for j in infile:
             hold.append(int(j))
         infile.close()
 
         os.remove('text_files/file' + str(i) + '.txt')
 
-        outfile = open('text_files/file' + str(i) + '.txt', 'w')
+        outfile = open('text_files/file' + str(i) + '.txt', 'w', encoding='utf-8')
         sortarray(hold)
         for j in range(len(hold)):
             outfile.write(str(hold[j]))
@@ -84,7 +84,7 @@ def merge(file1, file2, name):
     text1 = file1.readline()
     text2 = file2.readline()
 
-    outfile = open('text_files/file' + str(name) + '.txt', 'w')
+    outfile = open('text_files/file' + str(name) + '.txt', 'w', encoding='utf-8')
 
     while True:
         if(text1 != '' and text2 != ''):
@@ -109,8 +109,8 @@ def merge(file1, file2, name):
 def iteration(start, end, name):
     for i in range(start, end):
         if(i%2 == 0):
-            file1 = open('text_files/file' + str(i) + '.txt', 'r')
-            file2 = open('text_files/file' + str(i+1) + '.txt', 'r')
+            file1 = open('text_files/file' + str(i) + '.txt', 'r', encoding='utf-8')
+            file2 = open('text_files/file' + str(i+1) + '.txt', 'r', encoding='utf-8')
             merge(file1, file2, name)
             print("file" + str(i) + ".txt and file" + str(i+1) + ".txt merge complete")
             name += 1
@@ -138,7 +138,7 @@ while True:
     else:
         print("The file", str(FILE_NAME), "is not found.")
 
-infile = open(FILE_NAME, 'r')                                               # open file
+infile = open(FILE_NAME, 'r', encoding='utf-8')                             # open file
 
 # file should exceed 2.3 GB to use external sort 
 if(TOTAL_NUM >= 230000000):

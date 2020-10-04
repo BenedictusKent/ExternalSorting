@@ -1,9 +1,9 @@
 import random
 import time
 
-outfile = open("input.txt", "w")
+outfile = open("test.txt", "w", encoding="utf-8")
 
-TOTAL_NUM = 100000000                   # 1bil: ~10GB   100mil: ~1GB
+TOTAL_NUM = 1600000000                  # 1bil: ~10GB   100mil: ~1GB
 
 start = time.time()
 for i in range(TOTAL_NUM):
