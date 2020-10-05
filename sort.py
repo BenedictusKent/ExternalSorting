@@ -126,10 +126,11 @@ while True:
     FILE_LIMIT = int(input("How big should each file be when splitted? "))
     if(TOTAL_NUM/FILE_LIMIT >= 230000000):
         print("Separated files are still too big.")
-    if(FILE_LIMIT >= TOTAL_NUM/4):
-        print("File limit may still be too big to sort right away.")
     else:
-        break
+        if(FILE_LIMIT >= TOTAL_NUM/4):
+            print("File limit may still be too big to sort right away.")
+        else:
+            break
 
 while True:
     FILE_NAME = input("Which file to sort? ")
