@@ -8,7 +8,7 @@ This method works by:
 2. Sort each and every smaller file with any sorting methods
 3. Merge them together in a single file  
 Here's the visuals:  
-![External Sorting Visuals0(img/extsort.jpg)]  
+![External Sorting Visuals](img/extsort.jpg)]  
 
 ## Dive into Code
 ### Versions
@@ -19,13 +19,14 @@ The large file can be created with **largefile.py**.  The range of numbers is fr
 1. Change the filename (output is a text file).
 2. Change the size 
 #### Compilation
-'''
+```
 python3 largefile.py
-'''
+```
 #### Limitations
 Found no way to make a big file just by specifying the file size.  
 Instead, I used total numbers to make the file. Approximately:
 * 100 million numbers = 1 GB
 * 1 billion numbers = 10 GB  
+
 **WARNING!** This is just an approximation, so at times the file can be bigger or lower than what you want depending on
 the number of bytes in each and every line of numbers. 
